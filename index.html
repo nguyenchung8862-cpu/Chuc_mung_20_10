@@ -156,6 +156,8 @@ button:disabled { opacity:.6;cursor:not-allowed; }
 .float-layer {position:fixed;inset:0;z-index:26;pointer-events:none;overflow:hidden;}
 .petal {position:absolute;top:-35px;width:12px;height:20px;border-radius:2px 90% 6px 90%;background:radial-gradient(circle at 30% 25%,#ffebec,#e6a6b7 72%,#c77d95);box-shadow:0 1px 2px #ba899233;opacity:.69;animation:fall linear forwards;will-change:transform;}
 @keyframes fall {0%{transform:translate3d(0,-40px,0) rotate(0deg);opacity:0;}10%{opacity:.62;}89%{opacity:.58;}100%{transform:translate3d(var(--sway),110vh,0) rotate(var(--spin));opacity:0;}}
+.burst {position:fixed;z-index:120;left:var(--x);top:var(--y);pointer-events:none;color:var(--col,#e7b68e);font-size:var(--size,17px);opacity:0;animation:burst 1.6s var(--ease) forwards;}
+@keyframes burst {0%{transform:translate(0,0) scale(.2) rotate(0);opacity:1;}65%{opacity:1;}100%{transform:translate(var(--tx),var(--ty)) scale(.7) rotate(var(--spin));opacity:0;}}
 .js .reveal {opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
 .js .reveal.visible {opacity:1;transform:none;}
 /* form */
@@ -458,7 +460,6 @@ body{background:#fff5f8;color:var(--ink);}
 .open-hit{inset:0;z-index:20;border:0;border-radius:14px;background:transparent;touch-action:manipulation;}
 .entry-cta{font-size:11px;letter-spacing:.11em;gap:9px;min-height:45px;margin-top:28px;color:#8d536e;text-shadow:0 1px #fff6fa;}
 .entry-cta span{width:36px;height:36px;background:#fff9f4;border-color:#d8b092;color:#9a6172;box-shadow:0 5px 15px #c17a9922;}
-.entry-cta b{font-weight:400;font-size:18px;color:#c79d79;}
 .entry-foot{position:static;margin-top:6px;font-size:12px;letter-spacing:.008em;color:#af8794;}
 .entry.is-opening .envelope-scene{animation:none;}
 @keyframes sprayArrive{from{opacity:0;transform:translateY(27px) rotate(-13deg) scale(.9)}to{opacity:.88;transform:translateY(0) rotate(-5deg) scale(1)}}
@@ -505,7 +506,7 @@ body{background:#fff5f8;color:var(--ink);}
 .bouquet-svg{width:106%;max-width:690px;max-height:675px;transform:translate(1%,0);filter:drop-shadow(0 22px 17px #915e7528);}
 @keyframes bouquetDrift{to{transform:translate(1%,8px) rotate(.75deg)}}
 .art-star{position:absolute;z-index:2;color:#c29c71;text-shadow:0 0 12px #fff;font-family:Georgia,serif;animation:glimmer 4s infinite;pointer-events:none;}
-.art-star-a{top:22%;left:7%;font-size:23px;}.art-star-b{right:10%;top:21%;font-size:20px;animation-delay:.7s;}.art-star-c{right:9%;bottom:20%;font-size:13px;animation-delay:1.5s;}
+.art-star-a{top:22%;left:7%;font-size:23px;}.art-star-b{right:10%;top:21%;font-size:20px;animation-delay:.7s;}
 .art-word{font-size:27px;right:5%;bottom:12%;transform:rotate(-8deg);color:#98627e;text-shadow:0 3px 8px #fff9fc;}
 .vertical-note{letter-spacing:.31em;color:#bd90a2;right:13px;}
 /* Delicate interlude and letter on fine stationery */
@@ -853,7 +854,7 @@ body.guest-card .site-nav #musicBtn { width:54px; height:54px; }
    <div class="env-seal"><strong>20/10</strong><small>LOVE</small></div>
    <button class="open-hit" id="openCard" type="button" aria-label="Mở thiệp 20 tháng 10"></button>
   </div>
-  <div class="entry-cta" aria-hidden="true"><span>✉</span> CHẠM PHONG BÌ ĐỂ MỞ THIỆP <b>↗</b></div>
+  <div class="entry-cta" aria-hidden="true"><span>✉</span> CHẠM PHONG BÌ ĐỂ MỞ THIỆP</div>
   <span class="entry-foot">Dành tặng những điều đẹp đẽ nhất · 20.10</span>
   <div class="creator-entry" aria-label="Thiệp do Thành Chung thiết kế">
     <span class="creator-entry-label">ĐƯỢC THIẾT KẾ BỞI</span>
@@ -887,7 +888,7 @@ body.guest-card .site-nav #musicBtn { width:54px; height:54px; }
     </div>
     <div class="hero-art">
       <div class="hero-arch" aria-hidden="true"></div>
-      <span class="art-star art-star-a" aria-hidden="true">✦</span><span class="art-star art-star-b" aria-hidden="true">✧</span><span class="art-star art-star-c" aria-hidden="true">✳</span>
+      <span class="art-star art-star-a" aria-hidden="true">✦</span><span class="art-star art-star-b" aria-hidden="true">✧</span>
        <svg class="bouquet-svg" viewBox="0 0 720 730" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
 <defs>
   <linearGradient id="leafG" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e2e6c8"></stop><stop offset=".37" stop-color="#a7ba92"></stop><stop offset="1" stop-color="#526e62"></stop></linearGradient>
@@ -1343,6 +1344,11 @@ function finishOpening(){
 }
 function startOpening(){
  if(opened)return;opened=true;
+ // Khi chạm phong bì, bung những cánh hoa, trái tim và ánh sao
+ // GIỐNG hệt hiệu ứng ở nút 'Nhận một chút yêu thương'.
+ const seal=$('entry').querySelector('.env-seal');
+ const r=(seal || $('openCard')).getBoundingClientRect();
+ burst(r.left+r.width/2,r.top+r.height/2,55);
  $('openCard').disabled=true;$('entry').classList.add('is-opening');
  // Việc gọi trong sự kiện chạm cho phép nhạc phát trên iPhone/Android.
  setMusic(true);
@@ -1350,7 +1356,18 @@ function startOpening(){
 }
 $('openCard').addEventListener('click',startOpening);
 $('readWish').addEventListener('click',()=>$('loichuc').scrollIntoView({behavior:reduced?'auto':'smooth'}));
-$('receiveFlowers').addEventListener('click',()=>{notify('Gửi bạn một bó hoa và ngàn lời yêu thương! ♥');});
+function burst(x,y,n=40){
+ if(reduced)return;
+ const glyphs=['✿','✧','♡','❀','✦'];
+ for(let i=0;i<n;i++){
+  const e=document.createElement('span');e.className='burst';e.textContent=glyphs[Math.floor(Math.random()*glyphs.length)];
+  const a=Math.random()*Math.PI*2, dist=65+Math.random()*Math.min(260,innerWidth*.4);
+  e.style.setProperty('--x',x+'px');e.style.setProperty('--y',y+'px');e.style.setProperty('--tx',Math.cos(a)*dist+'px');e.style.setProperty('--ty',Math.sin(a)*dist+'px');
+  e.style.setProperty('--spin',(Math.random()*660-330)+'deg');e.style.setProperty('--size',(12+Math.random()*22)+'px');e.style.setProperty('--col',['#e8b4c0','#edcca0','#f0dfbd','#e7a3af','#d3ad78'][i%5]);
+  document.body.appendChild(e);setTimeout(()=>e.remove(),1800);
+ }
+}
+$('receiveFlowers').addEventListener('click',(e)=>{const r=e.currentTarget.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,65);notify('Gửi bạn một bó hoa và ngàn lời yêu thương! ♥');});
 let petalTimer=null;
 function makePetal(){
  if(document.hidden || !document.body.classList.contains('opened') || reduced)return;
