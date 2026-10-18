@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#f9f4ed">
+<meta name="theme-color" content="#fff0f5">
 <meta name="description" content="Một tấm thiệp đặc biệt chúc mừng Ngày Phụ nữ Việt Nam 20/10 – mở thiệp để nhận những lời thương.">
 <meta property="og:title" content="Một tấm thiệp gửi bạn · 20/10">
 <meta property="og:description" content="Một chút dịu dàng, ngàn lời yêu thương. Chạm để mở thiệp 20/10 nhé!">
@@ -325,10 +325,112 @@ button, a, [role="button"] {touch-action:manipulation;}
  .wish-card{padding-inline:17px;}
 }
 
+
+/* ======= 20/10 PASTEL PINK · BẢN CHỮ BAY LÊN ======= */
+:root { --cream:#fff1f6;--paper:#fffafd;--pink:#f3d5e1;--wine:#81445f;--wine-dark:#58334c;--rose:#c27b95;--ink:#705667; }
+body {background:#fff1f6;}
+.entry {background:radial-gradient(circle at 16% 14%,#ffe3ed 0%,transparent 47%),radial-gradient(circle at 88% 84%,#f7d3e4 0%,transparent 45%),linear-gradient(145deg,#fff8fa,#fce6ef);}
+.site-nav {background:rgba(255,240,247,.90);border-bottom:1px solid #edcbdb;}
+.hero {background:radial-gradient(ellipse at 83% 27%,#f6cade 0,transparent 46%),radial-gradient(ellipse at 12% 76%,#ffe9ef 0,transparent 54%),linear-gradient(148deg,#fff3f7 0%,#fbe0ea 64%,#fff0f5 100%);}
+.letter-section {background:radial-gradient(circle at 14% 26%,#ffdce9 0,transparent 40%),linear-gradient(155deg,#fff6f9,#ffe7f0);}
+.letter-paper {background:linear-gradient(145deg,#fffdfe,#fff5f9);border-color:#ecced7;box-shadow:0 24px 80px #9b607b1b;}
+.letter-wrap::before{border-color:#dfb4c7;}
+.letter-paper::after{background:#fffafd;color:#cb9ab3;}
+.wishes-section {background:linear-gradient(135deg,#fff1f7,#fbe2eb 55%,#fff6f9);}
+.wish-card {background:linear-gradient(145deg,#fffafe,#ffeef5);border-color:#ebcada;}
+.wish-card::after {border-color:#f0d8e2;}
+.quote-strip {background:linear-gradient(120deg,#f6d2e0,#f8e0ea 48%,#f0bfcf);color:#653d53;}
+.quote-strip .quote-mark{color:#b47b96;}
+.quote-strip p{color:#693e55;}
+.quote-strip span{color:#875f73;}
+.quote-strip::before,.quote-strip::after{color:#ffffff60;}
+.final-section {background:radial-gradient(circle at 55% 8%,#d993b0,#a76486 75%);}
+.final-section h2{color:#fff9fb;}.final-section h2 em{color:#ffe4ee;}
+.final-section p{color:#fff2f7;}.final-section .eyebrow{color:#ffebd8;}
+.hero-title, .entry h1, .section-heading, .recipient, .final-section h2 {text-shadow:0 5px 25px rgba(201,132,159,.10);}
+.hero-title em, .section-heading em, .final-section h2 em {font-style:italic;}
+.entry h1 {animation:introLetter 1.55s cubic-bezier(.17,.8,.27,1) both;}
+.entry-preamble {animation:introLetter 1.3s .18s both;}
+.entry-desc {animation:introLetter 1.35s .38s both;}
+.entry-cta {animation:softPulse 2.8s ease-in-out infinite;}
+@keyframes introLetter {from{opacity:0;transform:translateY(38px);filter:blur(5px);}to{opacity:1;transform:none;filter:blur(0)}}
+/* Tiêu đề xuất hiện theo từng từ (giữ nguyên dấu tiếng Việt) */
+.type-ready .word-rise {display:inline-block;opacity:0;transform:translate3d(0,54px,0) rotate(-4deg) scale(.96);filter:blur(6px);will-change:transform,opacity;}
+.type-ready.letters-on .word-rise {animation:wordAscend 1.18s cubic-bezier(.16,.94,.26,1) both;animation-delay:var(--word-delay,0ms);}
+@keyframes wordAscend {0%{opacity:0;transform:translate3d(0,56px,0) rotate(-5deg) scale(.94);filter:blur(7px);}62%{opacity:1;filter:blur(0);}100%{opacity:1;transform:translate3d(0,0,0) rotate(0) scale(1);filter:blur(0)}}
+/* Các đoạn chữ có độ trễ nhẹ như từng lá thư mở ra */
+.js .reveal {opacity:0;transform:translate3d(0,53px,0) scale(.985);filter:blur(6px);transition:opacity 1.2s cubic-bezier(.15,.9,.24,1),transform 1.2s cubic-bezier(.15,.9,.24,1),filter 1.4s ease;}
+.js .reveal.visible {opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0);}
+.opened .hero-kicker {animation:introLetter 1.1s .1s both;}
+.opened .hero-description {animation:introLetter 1.1s 1s both;}
+.opened .hero-date {animation:introLetter 1.1s .76s both;}
+.opened .pill-link {animation:introLetter 1.1s 1.18s both;}
+.letter-content .wish-paragraph {display:block;margin:0 0 1.12em;opacity:0;transform:translate3d(0,34px,0);filter:blur(3px);}
+.letter-content .wish-paragraph:last-child {margin-bottom:0;}
+.letter-paper.letter-show .wish-paragraph {animation:paragraphAscend 1.18s cubic-bezier(.2,.8,.25,1) both;animation-delay:var(--p-delay,0ms);}
+@keyframes paragraphAscend {to{opacity:1;transform:none;filter:blur(0);}}
+/* Cánh hoa + trái tim nhỏ rơi thưa, lắc nhẹ */
+.heart-fall {position:absolute;top:-45px;pointer-events:none;color:#e49eb8;font-size:var(--heart-size,15px);line-height:1;opacity:0;text-shadow:0 3px 9px #ce8fa340;animation:heartDrift linear forwards;will-change:transform;}
+@keyframes heartDrift {0%{transform:translate3d(0,-36px,0) rotate(-22deg) scale(.6);opacity:0;}14%{opacity:var(--heart-opacity,.65);}80%{opacity:var(--heart-opacity,.65);}100%{transform:translate3d(var(--sway),110vh,0) rotate(var(--spin)) scale(1);opacity:0;}}
+.float-layer .petal {filter:blur(.1px);}
+/* Bộ điều khiển đổi nhạc theo phong cách thiệp cưới */
+.music-choose {font:normal 23px var(--type-heading);color:#a15b7c;}
+.music-dialog {border:1px solid #e9c2d2;border-radius:22px;width:min(530px,calc(100vw - 24px));max-height:90dvh;padding:0;background:#fff8fb;box-shadow:0 29px 99px #56304560;color:#684458;}
+.music-dialog::backdrop {background:#47273d88;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);}
+.music-dialog-body {max-height:90dvh;overflow-y:auto;padding:26px clamp(17px,5vw,34px) 23px;scrollbar-width:none;}
+.music-dialog-body::-webkit-scrollbar {display:none;}
+.music-dialog .dialog-top h2 {font:normal clamp(22px,6.6vw,30px)/1.45 var(--type-heading);}
+.music-now {margin:2px 0 17px;border:1px solid #edcbd9;background:#fff0f6;border-radius:13px;padding:12px 13px;font-size:13px;line-height:1.5;}
+.music-now strong {color:#a25077;overflow-wrap:anywhere;}
+.music-choices{display:grid;gap:2px;}
+.music-default {background:#ffedf4;border:1px solid #eec8d9;border-radius:10px;min-height:43px;padding:8px 14px;color:#7c4963;text-align:left;font-size:13px;font-weight:700;}
+.music-default:hover {background:#ffe0ec;}
+.music-file-field {margin-top:20px;}
+.music-file-field input {font-size:13px;background:#fff;max-width:100%;padding:11px;}
+.music-file-field input::file-selector-button {border:0;border-radius:7px;padding:9px;background:#f1d9e5;color:#7a425e;margin-right:8px;cursor:pointer;}
+.music-dialog .form-field {margin-bottom:9px;}
+.music-dialog .form-field input[type=url] {font-size:16px;min-width:0;}
+.music-tip {font-size:12px;color:#967b88;line-height:1.7;margin:5px 0 17px;}
+.music-volume {display:flex;align-items:center;gap:12px;margin:12px 0 4px;font-size:12px;font-weight:700;}
+.music-volume input {min-width:0;flex:1;accent-color:#a35b7c;}
+.music-volume output {font-size:12px;color:#a15b7c;min-width:39px;text-align:right;}
+.music-footer {display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.music-footer .form-btn {flex:1;min-width:135px;font-size:12px;}
+.music-export-hint {margin-top:12px;margin-bottom:0;}
+@media(max-width:600px){
+ .site-nav{gap:8px;}
+ .nav-actions{gap:6px;}
+ .nav-actions .icon-button{width:35px;height:35px;}
+ .nav-actions .music-choose{font-size:22px;}
+ .hero-grid {padding-top:75px;}
+ .hero-title{line-height:1.31;}
+ .music-dialog-body{padding-top:21px;}
+ .music-choices{gap:1px;}
+ .quote-strip{padding-left:27px;padding-right:27px;}
+}
+@media(max-width:360px){.nav-actions{gap:5px;}.brand{font-size:18px;}.nav-actions .nav-button{font-size:10px;padding:0 9px;}}
+@media(prefers-reduced-motion:reduce){
+ .type-ready .word-rise,.type-ready.letters-on .word-rise{opacity:1!important;transform:none!important;filter:none!important;animation:none!important;}
+ .letter-content .wish-paragraph{opacity:1;transform:none;filter:none;}
+ .entry h1,.entry-preamble,.entry-desc{animation:none!important;}
+}
+
+
+/* THIỆP XUẤT GỬI KHÁCH: chỉ giữ nút sóng âm để phát / tắt nhạc. */
+body.guest-card #editBtn,
+body.guest-card #chooseMusicBtn,
+body.guest-card #shareBtn,
+body.guest-card #editDialog,
+body.guest-card #musicDialog { display:none !important; }
+body.guest-card .nav-actions { gap:0; }
+body.guest-card #musicBtn { width:42px; height:42px; }
+body.guest-card .music-bars { width:21px; }
+body.guest-card .music-bars b { width:3px; }
+
 </style>
 </head>
 <body>
-<!-- TẤT CẢ NỘI DUNG NẰM TRONG 01 FILE HTML: KHÔNG CẦN ẢNH, NHẠC HAY THƯ VIỆN NGOÀI. -->
+<!-- MỘT FILE HTML GỐC: hoa, chữ và nhạc mặc định hoạt động offline. Có thể chọn nhạc riêng và xuất file HTML kèm nhạc. -->
 <div class="entry" id="entry" role="region" aria-label="Màn hình mở thiệp">
  <div class="entry-inner">
   <p class="entry-preamble">NGÀY PHỤ NỮ VIỆT NAM</p>
@@ -355,6 +457,7 @@ button, a, [role="button"] {touch-action:manipulation;}
    <button class="icon-button" id="musicBtn" type="button" aria-label="Bật nhạc" aria-pressed="false" title="Bật / tắt nhạc">
     <span class="music-bars"><b></b><b></b><b></b><b></b></span>
    </button>
+   <button class="icon-button music-choose" id="chooseMusicBtn" type="button" aria-label="Chọn nhạc yêu thích" title="Đổi bài nhạc"><span aria-hidden="true">♫</span></button>
    <button class="nav-button" id="editBtn" type="button">✎ &nbsp;Cá nhân hóa</button>
   </div>
  </nav>
@@ -518,6 +621,37 @@ button, a, [role="button"] {touch-action:manipulation;}
  </main>
 </div>
 
+
+  <dialog class="music-dialog" id="musicDialog" aria-labelledby="musicHeading">
+    <div class="music-dialog-body">
+      <header class="dialog-top">
+        <div><div class="eyebrow">GIAI ĐIỆU DÀNH CHO BẠN</div><h2 id="musicHeading">Chọn nhạc yêu thích ♫</h2></div>
+        <button class="close-btn" id="closeMusic" type="button" aria-label="Đóng chọn nhạc">×</button>
+      </header>
+      <p class="music-now">Đang chọn: <strong id="musicNow">Giai điệu dịu dàng</strong></p>
+      <div class="music-choices">
+        <button class="music-default" id="useDefaultMusic" type="button">✧ Dùng giai điệu có sẵn</button>
+        <label class="form-field music-file-field" for="musicFile"><span>① Chọn bài hát từ điện thoại hoặc máy tính</span>
+          <input type="file" id="musicFile" accept="audio/*,.mp3,.m4a,.wav,.ogg,.aac" />
+        </label>
+        <p class="music-tip">Bản nhạc chọn từ máy sẽ nghe ngay. Để gửi trọn vẹn trong <strong>1 file HTML</strong>, hãy chọn nhạc dưới 9 MB rồi bấm “Xuất thiệp kèm nhạc”.</p>
+        <label class="form-field" for="musicUrl"><span>② Hoặc nhập đường dẫn trực tiếp đến bài nhạc</span>
+          <input id="musicUrl" type="url" inputmode="url" autocomplete="off" placeholder="https://.../bai-hat.mp3 hoặc nhac-nen.mp3" />
+        </label>
+        <button class="music-default" id="applyMusicUrl" type="button">♫ Dùng nhạc từ đường dẫn</button>
+        <p class="music-tip">Nhạc qua đường dẫn giúp thiệp gọn nhẹ. Hãy dùng liên kết mở trực tiếp tệp âm thanh (MP3/M4A), không dùng liên kết trang nghe nhạc.</p>
+        <label class="music-volume" for="musicVolume"><span>Âm lượng</span><input type="range" id="musicVolume" min="0" max="100" value="40" aria-label="Âm lượng nhạc"/><output id="volumeValue" for="musicVolume">40%</output></label>
+      </div>
+      <div class="music-footer">
+        <button class="form-btn primary" id="exportCard" type="button">↓ Xuất thiệp kèm nhạc</button>
+        <button class="form-btn" id="closeMusicBottom" type="button">Hoàn tất</button>
+      </div>
+      <p class="music-tip music-export-hint" id="exportHint">Bản gửi khách chỉ hiển thị nút sóng nhạc (bật/tắt), không có nút Cá nhân hóa, chọn nhạc hay chia sẻ.</p>
+    </div>
+  </dialog>
+  <script type="application/json" id="embeddedSong">null</script>
+  <script type="application/json" id="embeddedGreeting">null</script>
+
 <dialog id="editDialog" class="edit-dialog" aria-labelledby="editHeading">
  <div class="dialog-body">
   <div class="dialog-top"><div><div class="eyebrow">TẤM THIỆP CỦA RIÊNG BẠN</div><h2 id="editHeading">Cá nhân hóa lời chúc</h2></div><button class="close-btn" type="button" id="closeEdit" aria-label="Đóng">×</button></div>
@@ -538,14 +672,18 @@ const DEFAULTS = {
  sender: 'Một người luôn trân quý bạn'
 };
 const $ = (id) => document.getElementById(id);
+function readEmbedded(id){try{return JSON.parse($(id)?.textContent||'null');}catch(e){return null;}}
+const builtInGreeting=readEmbedded('embeddedGreeting');
+const IS_GUEST_CARD=document.body.dataset.cardMode==='guest';
+
 const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-let state = {...DEFAULTS};
+let state = {...DEFAULTS,...(builtInGreeting && typeof builtInGreeting==='object' ? builtInGreeting : {})};
 try {
  const fromUrl = new URLSearchParams(window.location.search);
- if (fromUrl.has('to') || fromUrl.has('wish') || fromUrl.has('from')) {
+ if (!IS_GUEST_CARD && (fromUrl.has('to') || fromUrl.has('wish') || fromUrl.has('from'))) {
   state = {recipient:(fromUrl.get('to')||DEFAULTS.recipient).slice(0,100),message:(fromUrl.get('wish')||DEFAULTS.message).slice(0,1800),sender:(fromUrl.get('from')||DEFAULTS.sender).slice(0,100)};
  } else {
-  const saved = JSON.parse(localStorage.getItem('20_10_greeting_v1')||'null');
+  const saved = (IS_GUEST_CARD || builtInGreeting) ? null : JSON.parse(localStorage.getItem('20_10_greeting_v1')||'null');
   if (saved && typeof saved==='object') {
    for(const key of ['recipient','message','sender']) if(typeof saved[key]==='string') state[key]=saved[key].slice(0,key==='message'?1800:100);
   }
@@ -553,7 +691,14 @@ try {
 } catch(e) {}
 function renderText() {
  $('recipientDisplay').textContent=state.recipient||DEFAULTS.recipient;
- $('messageDisplay').textContent=state.message||DEFAULTS.message;
+ const el=$('messageDisplay');el.replaceChildren();
+ const paragraphs=(state.message||DEFAULTS.message).split(/\n\s*\n/).filter(t=>t.trim());
+ for(const [i,paragraph] of paragraphs.entries()){
+  const line=document.createElement('span');line.className='wish-paragraph';
+  line.style.setProperty('--p-delay',Math.min(150+i*260,1800)+'ms');line.textContent=paragraph;
+  el.appendChild(line);
+ }
+
  $('senderDisplay').textContent=state.sender||DEFAULTS.sender;
  document.title='Một lời thương gửi '+(state.recipient===DEFAULTS.recipient?'bạn':state.recipient)+' · 20/10';
 }
@@ -575,6 +720,7 @@ function personalizedURL(){
  if(state.recipient!==DEFAULTS.recipient)url.searchParams.set('to',state.recipient);
  if(state.message!==DEFAULTS.message)url.searchParams.set('wish',state.message);
  if(state.sender!==DEFAULTS.sender)url.searchParams.set('from',state.sender);
+ if(musicKind==='url' && musicSrc && isValidMusicUrl(musicSrc))url.searchParams.set('bgm',musicSrc);
  return url.toString();
 }
 async function copyText(text) {
@@ -594,35 +740,151 @@ $('shareBtn').addEventListener('click',async()=>{
  if(navigator.share){try{await navigator.share({title:'Một tấm thiệp 20/10 gửi bạn',text:'Mời bạn mở tấm thiệp nhỏ này nhé ♡',url:link});return;}catch(e){if(e.name==='AbortError')return;}}
  try{notify(await copyText(link)?'Đã sao chép đường dẫn thiệp!':'Không thể sao chép liên kết.');}catch(e){notify('Không thể sao chép liên kết.');}
 });
-// NHẠC NỀN NHẸ TỰ TỔNG HỢP: CHỈ PHÁT SAU KHI NGƯỜI XEM CHẠM VÀO THIỆP.
-let audioCtx=null, master=null, noteTimer=null, playing=false, noteCount=0;
+// NHẠC CHỌN TỰ DO: file máy / liên kết trực tiếp / nhạc tích hợp offline.
+const AUDIO_URL_KEY='20_10_song_url_v2', VOLUME_KEY='20_10_volume_v2';
 const AudioContextClass=window.AudioContext||window.webkitAudioContext;
 const melody=[523.25,659.25,783.99,659.25,587.33,698.46,880,698.46,493.88,587.33,783.99,587.33,523.25,659.25,783.99,1046.5];
-function tone(freq){
- if(!audioCtx || audioCtx.state!=='running')return;
- const t=audioCtx.currentTime;
- const osc=audioCtx.createOscillator(), gain=audioCtx.createGain();
- osc.type='sine';osc.frequency.setValueAtTime(freq,t);
- gain.gain.setValueAtTime(.0001,t);gain.gain.exponentialRampToValueAtTime(.13,t+.025);gain.gain.exponentialRampToValueAtTime(.0001,t+1.35);
- osc.connect(gain);gain.connect(master);osc.start(t);osc.stop(t+1.4);
+let audioCtx=null,master=null,noteTimer=null,playing=false,noteCount=0;
+let songEl=new Audio();songEl.loop=true;songEl.preload='none';songEl.playsInline=true;
+let objectMusicURL=null, chosenMusicFile=null, musicKind='default', musicSrc='', musicName='Giai điệu dịu dàng';
+let volume=40;
+try{const savedVolume=localStorage.getItem(VOLUME_KEY);if(savedVolume!==null)volume=Number(savedVolume);}catch(e){}
+volume=Math.max(0,Math.min(100,volume));
+let embeddedSong=readEmbedded('embeddedSong');
+let initialUrlMusic='';
+try{initialUrlMusic=new URLSearchParams(location.search).get('bgm')||'';}catch(e){}
+if(!IS_GUEST_CARD && initialUrlMusic && isValidMusicUrl(initialUrlMusic)){
+ musicKind='url';musicSrc=initialUrlMusic;musicName='Nhạc theo đường dẫn';
+}else if(embeddedSong && typeof embeddedSong==='object' && typeof embeddedSong.src==='string'){
+ musicKind=embeddedSong.kind==='embedded'?'embedded':'url';musicSrc=embeddedSong.src;musicName=String(embeddedSong.name||'Bài hát yêu thích').slice(0,120);
+}else {
+ if(!IS_GUEST_CARD){try{const stored=localStorage.getItem(AUDIO_URL_KEY);if(stored && isValidMusicUrl(stored)){musicKind='url';musicSrc=stored;musicName='Nhạc theo đường dẫn';}}catch(e){}}
 }
-async function setMusic(on){
- if(on && !AudioContextClass){notify('Trình duyệt này chưa hỗ trợ nhạc nền.');return;}
- if(on){
-  try{
-   if(!audioCtx){audioCtx=new AudioContextClass();master=audioCtx.createGain();master.gain.value=.16;master.connect(audioCtx.destination);}
-   await audioCtx.resume();playing=true;
-   tone(melody[noteCount%melody.length]);noteCount++;
-   clearInterval(noteTimer);
-   noteTimer=setInterval(()=>{if(playing && !document.hidden){tone(melody[noteCount%melody.length]);noteCount++;}},540);
-  }catch(e){playing=false;}
- }else{playing=false;clearInterval(noteTimer);noteTimer=null;if(audioCtx && audioCtx.state==='running')audioCtx.suspend().catch(()=>{});}
+function isValidMusicUrl(v){
+ if(!v||v.length>2200||/[\r\n\t<>"']/.test(v))return false;
+ try{const u=new URL(v,location.href);return ['https:','http:','file:'].includes(u.protocol)&& !/^(javascript|data):/i.test(v);}catch(e){return false;}
+}
+function persistMusic(){try{if(musicKind==='url')localStorage.setItem(AUDIO_URL_KEY,musicSrc);else localStorage.removeItem(AUDIO_URL_KEY);}catch(e){}}
+function updateMusicNow(){
+ $('musicNow').textContent=musicName;
+ $('musicVolume').value=String(volume);$('volumeValue').textContent=volume+'%';
  $('musicBtn').classList.toggle('playing',playing);
  $('musicBtn').setAttribute('aria-label',playing?'Tắt nhạc':'Bật nhạc');
  $('musicBtn').setAttribute('aria-pressed',String(playing));
  $('musicBtn').title=playing?'Tắt nhạc':'Bật nhạc';
+ $('chooseMusicBtn').title='Đổi nhạc: '+musicName;
 }
+function tone(freq){
+ if(!audioCtx||audioCtx.state!=='running')return;
+ const t=audioCtx.currentTime;
+ const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+ osc.type='sine';osc.frequency.setValueAtTime(freq,t);
+ gain.gain.setValueAtTime(.0001,t);gain.gain.exponentialRampToValueAtTime(.13,t+.025);gain.gain.exponentialRampToValueAtTime(.0001,t+1.35);
+ osc.connect(gain);gain.connect(master);osc.start(t);osc.stop(t+1.4);
+}
+function stopSynth(){clearInterval(noteTimer);noteTimer=null;if(audioCtx&&audioCtx.state==='running')audioCtx.suspend().catch(()=>{});}
+function pauseMusic(){playing=false;songEl.pause();stopSynth();updateMusicNow();}
+async function setMusic(on){
+ if(!on){pauseMusic();return;}
+ try{
+  if(musicKind!=='default' && musicSrc){
+   stopSynth();
+   if(songEl.src!==new URL(musicSrc,location.href).href) {songEl.src=musicSrc;songEl.load();}
+   songEl.volume=volume/100;
+   await songEl.play();playing=true;
+  }else{
+   songEl.pause();
+   if(!AudioContextClass)throw new Error('Không hỗ trợ WebAudio');
+   if(!audioCtx){audioCtx=new AudioContextClass();master=audioCtx.createGain();master.gain.value=volume/100*.38;master.connect(audioCtx.destination);}
+   await audioCtx.resume();
+   playing=true;clearInterval(noteTimer);
+   tone(melody[noteCount%melody.length]);noteCount++;
+   noteTimer=setInterval(()=>{if(playing&&!document.hidden){tone(melody[noteCount%melody.length]);noteCount++;}},540);
+  }
+ }catch(err){playing=false;notify('Không phát được nhạc này. Hãy kiểm tra tệp hoặc đường dẫn MP3.');}
+ updateMusicNow();
+}
+function changeMusic(kind,src,name){
+ const wasPlaying=playing;
+ pauseMusic();musicKind=kind;musicSrc=src||'';musicName=name||'Giai điệu dịu dàng';
+ persistMusic();updateMusicNow();
+ if(wasPlaying)setMusic(true);
+}
+songEl.addEventListener('error',()=>{if(musicKind!=='default') {pauseMusic();notify('Không tải được bài nhạc. Hãy kiểm tra liên kết hoặc tệp âm thanh.');}});
 $('musicBtn').addEventListener('click',()=>setMusic(!playing));
+function showMusicDialog(){
+ $('musicUrl').value=musicKind==='url'?musicSrc:'';
+ updateMusicNow();
+ if(typeof $('musicDialog').showModal==='function')$('musicDialog').showModal();else $('musicDialog').setAttribute('open','');
+}
+function closeMusicDialog(){if(typeof $('musicDialog').close==='function')$('musicDialog').close();else $('musicDialog').removeAttribute('open');}
+$('chooseMusicBtn').addEventListener('click',showMusicDialog);
+$('closeMusic').addEventListener('click',closeMusicDialog);
+$('closeMusicBottom').addEventListener('click',closeMusicDialog);
+$('musicDialog').addEventListener('click',(e)=>{if(e.target===$('musicDialog'))closeMusicDialog();});
+$('useDefaultMusic').addEventListener('click',()=>{chosenMusicFile=null;if(objectMusicURL){URL.revokeObjectURL(objectMusicURL);objectMusicURL=null;}changeMusic('default','','Giai điệu dịu dàng');notify('Đã chọn giai điệu nhẹ nhàng có sẵn.');});
+$('musicFile').addEventListener('change',e=>{
+ const file=e.target.files?.[0];if(!file)return;
+ if(!file.type.startsWith('audio/')&&!/\.(mp3|m4a|aac|wav|ogg|flac)$/i.test(file.name)) {notify('Vui lòng chọn một tệp nhạc MP3, M4A hoặc WAV.');e.target.value='';return;}
+ if(file.size>45*1024*1024){notify('Tệp quá lớn để nghe trực tiếp trên thiệp. Vui lòng chọn file dưới 45 MB.');e.target.value='';return;}
+ if(objectMusicURL){URL.revokeObjectURL(objectMusicURL);objectMusicURL=null;}
+ chosenMusicFile=file;objectMusicURL=URL.createObjectURL(file);
+ changeMusic('file',objectMusicURL,file.name);
+ notify('Đã chọn nhạc từ máy. Nhấn “Xuất thiệp kèm nhạc” để gửi người khác.');
+});
+$('applyMusicUrl').addEventListener('click',()=>{
+ const url=$('musicUrl').value.trim();
+ if(!isValidMusicUrl(url)){notify('Đường dẫn chưa hợp lệ. Hãy nhập link trực tiếp đến tệp nhạc.');return;}
+ chosenMusicFile=null;if(objectMusicURL){URL.revokeObjectURL(objectMusicURL);objectMusicURL=null;}
+ changeMusic('url',url,'Nhạc theo đường dẫn');notify('Đã thay đường dẫn nhạc.');
+});
+$('musicVolume').addEventListener('input',e=>{
+ volume=Math.min(100,Math.max(0,Number(e.target.value)||0));
+ songEl.volume=volume/100;if(master)master.gain.value=volume/100*.38;
+ updateMusicNow();try{localStorage.setItem(VOLUME_KEY,String(volume));}catch(err){}
+});
+function bytesToUrl(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(new Error('Không đọc được tệp'));reader.readAsDataURL(file);});}
+// Xuất một file HTML nguyên vẹn kèm nhạc đã chọn; giữ lại màn hình mở thiệp.
+$('exportCard').addEventListener('click',async()=>{
+ const button=$('exportCard');button.disabled=true;button.textContent='Đang chuẩn bị thiệp...';
+ try{
+  let pack=null;
+  if(musicKind==='file'){
+   if(!chosenMusicFile)throw new Error('Hãy chọn lại bài nhạc từ thiết bị.');
+   if(chosenMusicFile.size>9*1024*1024)throw new Error('Nhạc quá 9 MB: hãy nén MP3 hoặc dùng đường dẫn để thiệp tải nhanh.');
+   const data=await bytesToUrl(chosenMusicFile);
+   pack={kind:'embedded',src:data,name:chosenMusicFile.name};
+  }else if(musicKind==='embedded')pack={kind:'embedded',src:musicSrc,name:musicName};
+  else if(musicKind==='url')pack={kind:'url',src:musicSrc,name:musicName};
+  const clone=document.documentElement.cloneNode(true);
+  clone.classList.remove('js');
+  const guestBody=clone.querySelector('body');
+  if(guestBody){guestBody.classList.remove('opened');guestBody.classList.add('guest-card');guestBody.dataset.cardMode='guest';}
+  // Phần quản trị chỉ hiển thị trong bản gốc để chỉnh sửa, không xuất hiện ở bản gửi khách.
+  for(const id of ['editBtn','chooseMusicBtn','shareBtn']){
+   const control=clone.querySelector('#'+id);
+   if(control){control.hidden=true;control.setAttribute('aria-hidden','true');control.tabIndex=-1;}
+  }
+  const entry=clone.querySelector('#entry');if(entry){entry.classList.remove('exit','is-opening');entry.removeAttribute('hidden');entry.removeAttribute('style');}
+  const openBtn=clone.querySelector('#openCard');if(openBtn)openBtn.disabled=false;
+  const toast=clone.querySelector('#toast');if(toast){toast.classList.remove('show');toast.textContent='';}
+  const float=clone.querySelector('#floatLayer');if(float)float.replaceChildren();
+  clone.querySelectorAll('.burst,.heart-fall,.petal').forEach(e=>e.remove());
+  const site=clone.querySelector('#site');if(site)site.classList.remove('visible');
+  clone.querySelectorAll('.reveal').forEach(e=>e.classList.remove('visible'));
+  clone.querySelectorAll('.type-ready').forEach(e=>e.classList.remove('letters-on'));
+  const songData=clone.querySelector('#embeddedSong');if(songData)songData.textContent=JSON.stringify(pack).replace(/</g,'\\u003c');
+  const greetingData=clone.querySelector('#embeddedGreeting');if(greetingData)greetingData.textContent=JSON.stringify(state).replace(/</g,'\\u003c');
+  clone.querySelectorAll('dialog').forEach(d=>d.removeAttribute('open'));
+  const markup='<!DOCTYPE html>\n'+clone.outerHTML;
+  const blob=new Blob([markup],{type:'text/html;charset=UTF-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='index.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),6000);
+  notify('Đã xuất thiệp kèm lời chúc và nhạc đã chọn ♡');
+ }catch(e){notify(e.message||'Không xuất được file thiệp.');}
+ finally{button.disabled=false;button.textContent='↓ Xuất thiệp kèm nhạc';}
+});
+updateMusicNow();
 // CHUYỂN CẢNH MỞ PHONG BÌ.
 let opened=false;
 function finishOpening(){
@@ -657,12 +919,16 @@ $('receiveFlowers').addEventListener('click',(e)=>{const r=e.currentTarget.getBo
 let petalTimer=null;
 function makePetal(){
  if(document.hidden || !document.body.classList.contains('opened') || reduced)return;
- const e=document.createElement('span');e.className='petal';
- e.style.left=Math.random()*100+'vw';e.style.width=(7+Math.random()*9)+'px';e.style.height=(11+Math.random()*14)+'px';e.style.opacity=(.2+Math.random()*.36);
+ const e=document.createElement('span');
+ const heart=Math.random()<.24;
+ e.className=heart?'heart-fall':'petal';
+ e.style.left=Math.random()*100+'vw';
+ if(heart){e.textContent=Math.random()<.5?'♥':'♡';e.style.setProperty('--heart-size',(10+Math.random()*15)+'px');e.style.setProperty('--heart-opacity',(.23+Math.random()*.42).toFixed(2));e.style.color=['#dc93b2','#e2acc6','#f0b6cb','#cf80a1'][Math.floor(Math.random()*4)];}
+ else {e.style.width=(7+Math.random()*9)+'px';e.style.height=(11+Math.random()*14)+'px';e.style.opacity=(.2+Math.random()*.36);}
  e.style.setProperty('--sway',(Math.random()*230-115)+'px');e.style.setProperty('--spin',(Math.random()*700-350)+'deg');
- const duration=8+Math.random()*6;e.style.animationDuration=duration+'s';$('floatLayer').appendChild(e);setTimeout(()=>e.remove(),duration*1000+300);
+ const duration=9+Math.random()*7;e.style.animationDuration=duration+'s';$('floatLayer').appendChild(e);setTimeout(()=>e.remove(),duration*1000+300);
 }
-function initPetals(){if(reduced || petalTimer)return;for(let i=0;i<7;i++)setTimeout(makePetal,i*180);petalTimer=setInterval(makePetal,880);}
+function initPetals(){if(reduced || petalTimer)return;for(let i=0;i<7;i++)setTimeout(makePetal,i*180);petalTimer=setInterval(makePetal,1050);}
 // MỖI KHỐI CHỮ CHỈ XUẤT HIỆN KHI CUỘN ĐẾN, KHÔNG MẤT TRƯỚC ĐÓ.
 function initReveal(){
  const els=[...document.querySelectorAll('.reveal')];
@@ -672,6 +938,43 @@ function initReveal(){
  els.forEach(el=>obs.observe(el));
 }
 initReveal();
+// Hiệu ứng nổi từng từ: không tách ký tự tiếng Việt nên dấu không bị rời.
+function initFloatingWords(){
+ const targets=[...document.querySelectorAll('.hero-title,.section-heading,.wish-card h3,.final-section h2')];
+ for(const el of targets){
+  if(el.classList.contains('type-ready'))continue;
+  let i=0;
+  const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+  const textNodes=[];while(walker.nextNode())textNodes.push(walker.currentNode);
+  for(const node of textNodes){
+   const chunks=node.nodeValue.match(/\s+|[^\s]+/gu)||[];if(!chunks.some(t=>t.trim()))continue;
+   const frag=document.createDocumentFragment();
+   for(const chunk of chunks){
+    if(!chunk.trim()){frag.appendChild(document.createTextNode(chunk));continue;}
+    const span=document.createElement('span');span.className='word-rise';span.textContent=chunk;
+    span.style.setProperty('--word-delay',Math.min(i*90,1250)+'ms');i++;frag.appendChild(span);
+   }
+   node.parentNode.replaceChild(frag,node);
+  }
+  el.classList.add('type-ready');
+ }
+ const animate=(el)=>el.classList.add('letters-on');
+ if(reduced||!('IntersectionObserver' in window)){targets.forEach(animate);return;}
+ const ob=new IntersectionObserver(entries=>{
+  for(const en of entries)if(en.isIntersecting){animate(en.target);ob.unobserve(en.target);}
+ },{threshold:.10,rootMargin:'0px 0px -20px 0px'});
+ targets.forEach(el=>ob.observe(el));
+}
+initFloatingWords();
+// Khi nội dung lá thư vào màn hình, các đoạn chúc lần lượt bay từ dưới lên.
+function initLetterFlow(){
+ const paper=document.querySelector('.letter-paper');
+ if(reduced||!('IntersectionObserver' in window)){paper.classList.add('letter-show');return;}
+ const ob=new IntersectionObserver(entries=>{
+  for(const en of entries)if(en.isIntersecting){paper.classList.add('letter-show');ob.disconnect();}
+ },{threshold:.09});ob.observe(paper);
+}
+initLetterFlow();
 // Cho phép mở ngay trong chế độ xem trước ?preview=1 (không xuất hiện với khách bình thường).
 if(new URLSearchParams(location.search).get('preview')==='1') {opened=true;document.body.classList.add('opened');$('entry').style.display='none';initPetals();}
 </script>
