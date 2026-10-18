@@ -840,22 +840,301 @@ body.guest-card .site-nav #musicBtn { width:54px; height:54px; }
    tốc độ êm trên iPhone; thao tác cuộn thủ công vẫn bình thường. */
 html.autoread-active { scroll-behavior:auto !important; }
 </style>
+<style id="atelierV15">
+/* V15 · Hoa hồng nguyên bản và khung giấy thanh lịch. Giữ nguyên toàn bộ chức năng. */
+:root {
+  --foil:#b78e62;
+  --foil-pale:#f4dfbd;
+  --rose-shadow:rgba(122,57,85,.13);
+}
+html {scrollbar-width:none;}
+body {font-kerning:normal;}
+button {transition:transform .28s var(--ease),box-shadow .28s ease,background .28s ease;}
+.entry {
+  background:radial-gradient(ellipse at 20% 12%,#fffdf9 0,transparent 46%),radial-gradient(ellipse at 91% 31%,#f2ccdc 0,transparent 50%),radial-gradient(ellipse at 5% 95%,#f5d6e1 0,transparent 50%),linear-gradient(135deg,#fff7f9,#f9e4ec 56%,#fff3f4);
+}
+.entry::before {
+  border-color:#cba79699;
+  box-shadow:inset 0 0 0 5px #fffaf766,inset 0 0 0 6px #dfc3b74d,0 0 0 6px #fffbf647;
+}
+.entry::after {color:#b08971;letter-spacing:.6em;}
+.entry-spray {filter:drop-shadow(0 9px 7px #a2657d1c);}
+.entry h1 {color:#65384e;text-shadow:0 2px #fffaf77d,0 10px 28px #ba78921a;}
+.entry h1 em {color:#ad6b86;}
+.entry-preamble {color:#987457;}
+.entry-desc {color:#896577;}
+.entry-cta {letter-spacing:.13em;}
+.entry-cta span {
+  position:relative;width:38px;height:38px;color:#9b6c6b;border-color:#c8a18b;
+  background:linear-gradient(145deg,#fffef8,#f4e3d9);box-shadow:0 4px 13px #96556e15,inset 0 1px #fff;
+}
+.entry-cta span::after{content:'';position:absolute;inset:-5px;border:1px solid #d4ad982e;border-radius:50%;}
+.entry-foot {color:#9e7d83;}
+.creator-entry::before {background:linear-gradient(90deg,transparent,#c5a07e,transparent);width:105px;}
+.creator-entry-name {color:#8f536c;}
+/* Chất giấy và dấu nhũ được tạo ngay trong tệp HTML. */
+.envelope-scene {filter:drop-shadow(0 32px 24px #7b3d582a) drop-shadow(0 3px 2px #6e34431c);}
+.env-back {border-color:#bc8198;box-shadow:inset 0 0 0 2px #f5c7cf42,inset 0 0 36px #6331492b;}
+.env-left {background:linear-gradient(62deg,#a6667e 0%,#bd8198 53%,#d5a2b6 100%);}
+.env-right {background:linear-gradient(236deg,#c48ba1 0%,#a26180 62%,#82435f 100%);}
+.env-front {background:linear-gradient(171deg,#dca7b9 4%,#bc7e98 45%,#9d5b79 100%);}
+.env-front::before {content:'';position:absolute;inset:0;background:linear-gradient(103deg,transparent 30%,#ffeddf16 49%,transparent 65%);}
+.env-front::after {height:1px;background:linear-gradient(90deg,transparent,#f4d7b278 28%,#ffeacd98 50%,#e0b8926b 72%,transparent);}
+.env-flap {background:linear-gradient(148deg,#e3b6c6 0%,#c28ba4 42%,#a96986 70%,#8e4e6d 100%);filter:drop-shadow(0 1px 1px #71364f3b);}
+.env-flap::after {
+  content:'';position:absolute;left:15%;top:-3%;width:70%;height:40%;
+  border-left:1px solid #f8dec979;border-bottom:1px solid #f8dec979;transform:rotate(-45deg) skew(9deg,9deg);opacity:.5;
+}
+.env-letter {box-shadow:0 1px 18px #68344e26,inset 0 0 0 6px #fffdfc,inset 0 0 0 7px #ddbc9b66;}
+.env-letter::after{border-color:#c7a27d6b;inset:11px;}
+.env-seal {
+  background:radial-gradient(ellipse at 29% 22%,#fff8d8 0%,#f5e2ad 29%,#d6b47c 58%,#a97b4c 87%,#e7c997 100%);
+  border:2px solid #f4dcad;
+  box-shadow:0 6px 13px #6a334b55,0 1px 1px #5e304862,inset 0 0 0 3px #b88b5866,inset 0 0 0 4px #fff4cdab,inset 0 -4px 9px #9d6b3b55;
+  color:#8b5b49;text-shadow:0 1px 0 #fff2c9bf;
+}
+.env-seal::before {content:'';position:absolute;inset:7px;border:1px dotted #b98c59;border-radius:50%;opacity:.85;}
+.env-seal::after {content:'';position:absolute;inset:1px;border-radius:50%;background:linear-gradient(121deg,transparent 31%,#fffbe559 42%,transparent 53%);pointer-events:none;}
+.env-seal strong{font-weight:500;letter-spacing:-.06em;}
+.env-seal small{letter-spacing:.22em;}
+.env-foil {color:#f8dfb8;opacity:.65;text-shadow:0 1px 0 #875063,0 -1px 0 #fff0d333;}
+.env-message {color:#fff0d9;letter-spacing:.07em;opacity:.9;}
+.envelope-scene .env-foil{display:none;}
+.v14-open-aura {position:absolute;z-index:0;inset:7%;border-radius:50%;pointer-events:none;opacity:0;border:1px solid #d3ac7a;box-shadow:0 0 40px 17px #fff1cb59;}
+.entry.is-opening .v14-open-aura {animation:v14OpenAura 1.5s var(--ease) forwards;}
+/* Giữ bố cục, trau chuốt khung và bề mặt. */
+.hero {
+  background:radial-gradient(ellipse 45% 58% at 83% 43%,#efc8d94d 0,transparent 99%),radial-gradient(ellipse 56% 60% at 8% 69%,#f6d6df73 0,transparent 95%),linear-gradient(136deg,#fffaf8 0%,#fcebf1 51%,#fff5f5 100%);
+}
+.hero::before {border-color:#c6a18478;box-shadow:inset 0 0 0 6px #fffdf54d,inset 0 0 0 7px #d7b8a02e;}
+.hero::after {content:'';left:auto;top:-200px;right:-210px;width:590px;height:590px;border:1px solid #c4a18330;border-radius:50%;opacity:1;transform:none;box-shadow:0 0 0 22px #fffdfa24,0 0 0 23px #c4a18320;}
+.hero-corner {display:none;}
+.hero-grid{position:relative;z-index:1;}
+.hero-title {text-shadow:0 2px #fffaf777,0 11px 25px #af6a8310;}
+.hero-title em {color:#b97491;}
+.hero-kicker {color:#9b7856;}
+.hero-date .date-num {color:#94566d;text-shadow:0 1px #fff9f4;}
+.hero-date .line{background:linear-gradient(90deg,#bd9263,#f0d3ad);}
+.hero-date .date-label {color:#97766a;}
+.hero-art::before {
+  border:1px solid #c8a07b78;border-style:solid;opacity:.8;box-shadow:0 0 0 7px #fffcf42e,0 0 0 8px #cda88b29;
+}
+.hero-arch {
+  background:radial-gradient(circle at 43% 34%,#fffef8ed 0%,#fff7f1b3 42%,#f7dfe99c 72%,#edc6d54d 100%);
+  border-color:#b9917073;box-shadow:inset 0 0 0 9px #fffaf58c,inset 0 0 0 10px #cba48147,0 25px 55px #a7678516;
+}
+.bouquet-svg {filter:drop-shadow(0 21px 16px #95647b24);}
+.art-word {color:#946078;}
+.pill-link,.final-btn {position:relative;overflow:hidden;isolation:isolate;}
+.pill-link {
+  background:linear-gradient(120deg,#9d617b,#81445f 65%,#713e58);border-color:#965e74;
+  box-shadow:0 10px 24px #92516b30,inset 0 1px #ffeff75c,inset 0 -1px #5e2e4729;
+}
+.pill-link::before,.final-btn::before {
+  content:'';position:absolute;z-index:-1;inset:-60% -30%;background:linear-gradient(112deg,transparent 33%,#fff9e642 47%,transparent 59%);
+  transform:translateX(-105%);animation:v14ButtonSheen 8s ease-in-out infinite;pointer-events:none;
+}
+.quote-strip {
+  position:relative;background:radial-gradient(ellipse at 50% 12%,#fffdf9 0,#fff0f3 52%,#f6dfe6 100%);
+  border-color:#d9b8a877;
+}
+.quote-strip::before,.quote-strip::after {content:'';top:50%;width:160px;height:160px;border:1px solid #cfae902c;border-radius:50%;transform:translateY(-50%);box-shadow:0 0 0 12px #fffaf64d,0 0 0 13px #cfad9026;}
+.quote-strip::before{left:-104px;}.quote-strip::after{right:-104px;}
+.quote-floral {border-color:#c7a58973;background:linear-gradient(140deg,#fffdf6,#f5e1dd);color:#b17f8a;box-shadow:0 0 0 7px #fffaf88c,0 0 0 8px #d7b8a636,0 7px 21px #a7678510;}
+.quote-strip p {color:#81536a;text-wrap:pretty;}
+.quote-strip>span {color:#997361;}
+.letter-section {background:radial-gradient(ellipse at 6% 28%,#f7dce6 0,transparent 47%),radial-gradient(ellipse at 95% 79%,#f0ccd94d 0,transparent 44%),linear-gradient(160deg,#fff8f7,#fcebf1 62%,#fff5f5);}
+.section-topline {color:#a38065;}
+.section-topline::before,.section-topline::after {background:linear-gradient(90deg,transparent,#c29d7a);}
+.section-heading {color:#693b51;}
+.section-heading em {color:#b1708c;}
+.section-sub {color:#886b7b;}
+.letter-wrap::before {inset:14px -12px -14px 12px;border-color:#c8a48970;background:linear-gradient(145deg,#fffbf533,#e9ccd52b);box-shadow:0 18px 30px #9657740a;}
+.letter-paper {
+  border-color:#d2b29d9c;border-radius:7px;
+  background:radial-gradient(circle at 0 0,#fff4f0 0,transparent 49%),radial-gradient(circle at 100% 100%,#fbe4ea80 0,transparent 48%),linear-gradient(140deg,#fffdf9,#fff8f7 68%,#fffdfa);
+  box-shadow:0 32px 65px #9857731c,0 6px 13px #9857730b,inset 0 1px #fff;
+}
+.letter-paper::before {border-color:#c6a4816b;border-radius:2px;inset:12px;box-shadow:inset 0 0 0 4px #fffdf72e,inset 0 0 0 5px #e1c9b52e;}
+.letter-paper::after {color:#ae8664;background:#fffbf6;border-color:#d2b29d70;}
+.letter-paper .small-label {color:#98765e;}
+.recipient {color:#77445b;text-shadow:0 2px #fff;}
+.letter-content {color:#715364;}
+.gold-rule::before,.gold-rule::after {background:linear-gradient(90deg,transparent,#b89064);}
+.gold-rule::after {transform:rotate(180deg);}
+.gold-rule {color:#b48a61;}
+.paper-corner {border-color:#b99068;opacity:.7;}
+.letter-closer {color:#945873;}
+.sender {color:#a26e81;}
+.creator-letter {border-color:#d8b9a6;}
+.viet-section {background:radial-gradient(ellipse at 4% 41%,#f6d5e052,transparent 38%),radial-gradient(ellipse at 93% 69%,#f3e0c952,transparent 39%),linear-gradient(180deg,#fff8f7,#fcf0f3 48%,#fff9f6);}
+.viet-title {color:#693a51;}
+.viet-title em {color:#af718b;}
+.viet-figure {isolation:isolate;}
+.viet-figure::before {
+  content:'';position:absolute;z-index:-1;top:5%;left:50%;transform:translateX(-50%);width:84%;height:88%;
+  border-radius:48% 48% 3px 3px / 23% 23% 3px 3px;border:1px solid #cda98a4d;
+  background:radial-gradient(ellipse at 50% 35%,#fffcf5b3,#f8e8e852 65%,transparent 90%);box-shadow:inset 0 0 0 8px #fffdf52b,inset 0 0 0 9px #d9bba52e;
+}
+.viet-art-frame {filter:drop-shadow(0 20px 24px #8b4d6d17);}
+.viet-story blockquote {border-color:#be9875;background:linear-gradient(90deg,#f4dfe84d,transparent);padding-left:24px;}
+.viet-eyebrow,.viet-chapter {color:#a48061;}
+.wishes-section {background:radial-gradient(ellipse at 97% 9%,#f9e1e9,transparent 46%),linear-gradient(130deg,#fffaf7,#fdf0f4 74%,#fff9f8);}
+.wish-grid {gap:22px;}
+.wish-card {
+  border-radius:7px;border-color:#d2b4a27a;background:linear-gradient(145deg,#fffdf9,#fff5f6);
+  box-shadow:0 10px 30px #a56b820b,inset 0 1px #fff;padding-top:44px;
+}
+.wish-card::after {inset:8px;border-color:#dcc0a885;border-radius:2px;}
+.wish-card::before {top:16px;left:24px;font-size:13px;color:#a6805e;}
+.wish-card:nth-child(2){background:linear-gradient(145deg,#fffcf6,#fff4f0);}
+.wish-card:nth-child(3){background:linear-gradient(145deg,#fffafc,#fbeaf1);}
+.wish-icon {
+  position:relative;color:#ab7087;background:radial-gradient(circle at 30% 20%,#fffefa,#f4e0df);border-color:#ceb09999;
+  box-shadow:0 0 0 5px #fff9f78c,0 0 0 6px #d7b8a647,inset 0 1px #fff,0 5px 13px #9f688515;
+}
+.wish-card h3 {color:#7e4b63;}
+.wish-card p {color:#866a7b;}
+.wish-card:hover {transform:translateY(-7px);border-color:#bd96766b;box-shadow:0 23px 40px #995f7b1a;}
+.final-section {
+  position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 0%,#bb829b 0%,#965f7c 42%,#77435f 76%,#673950 100%);
+  border-top:1px solid #d3b397;
+}
+.final-section::before {inset:20px;border-color:#f1d6b575;border-radius:3px;box-shadow:inset 0 0 0 6px #ffefd30a,inset 0 0 0 7px #e0bd9633;}
+.final-section::after {
+  content:'';position:absolute;z-index:-1;width:min(750px,92vw);aspect-ratio:1;left:50%;top:-30%;transform:translateX(-50%);border:1px solid #eecaa82b;border-radius:50%;box-shadow:0 0 0 20px #f9d8ba08,0 0 0 21px #f0c9a21a;pointer-events:none;
+}
+.final-ribbon {color:#f2d5b5;border-color:#e1c2a577;letter-spacing:.27em;}
+.final-ornament {text-shadow:0 2px 12px #f3dfb65c;}
+.final-section h2 {text-shadow:0 6px 20px #4f223426;}
+.final-section h2 em {color:#f7dce4;}
+.final-section p {color:#f8e9ee;}
+.final-btn {
+  background:linear-gradient(117deg,#fff3d8 0,#f3dfb8 37%,#dcb78a 100%);border:1px solid #ffedc9;
+  box-shadow:0 12px 29px #3e213d33,inset 0 1px #fff8e4,inset 0 -2px #b58a5b2e;color:#694052;
+}
+.footer-note {color:#ebd0d7;}
+.site-nav #musicBtn {border-color:#c3a081b3;background:linear-gradient(145deg,#fffdf9ed,#faeaf0ed);box-shadow:0 8px 26px #79455e24,inset 0 1px #fff;}
+.site-nav #musicBtn.playing {background:linear-gradient(145deg,#fff8ed,#efd8e3);border-color:#bc9578;}
+.site-nav #musicBtn::after {content:'';position:absolute;inset:4px;border:1px solid #d3b49866;border-radius:50%;pointer-events:none;}
+.site-nav #chooseMusicBtn,.site-nav #editBtn {border-color:#d3b6a7c7;background:#fffaf5e8;box-shadow:0 6px 20px #8449631a,inset 0 1px #fff;}
+.edit-dialog,.music-dialog {border-color:#c7a68cc7;border-radius:16px;background:linear-gradient(145deg,#fffcf7,#fff3f7);box-shadow:0 32px 85px #3f1e3b63;}
+.edit-dialog::backdrop,.music-dialog::backdrop {background:#3d233c80;}
+.dialog-top {border-color:#d7bda64d;}
+.form-field input,.form-field textarea {border-color:#d5b7a67d;background:#fffcfa;box-shadow:inset 0 1px 3px #b2828505;}
+.form-field input:focus,.form-field textarea:focus {box-shadow:0 0 0 3px #c99b8621;border-color:#b88f7d;}
+.form-btn.primary {background:linear-gradient(120deg,#995f7b,#75415b);box-shadow:inset 0 1px #fff2ed38;}
+.toast {border-color:#d6b48e;background:linear-gradient(125deg,#895370,#693b56);box-shadow:0 10px 25px #4f2c3b2b;}
+.burst {text-shadow:0 2px 8px #b1787a24;}
+
+@keyframes v14ButtonSheen {0%,55%{transform:translateX(-105%);}78%,100%{transform:translateX(105%);}}
+@keyframes v14OpenAura {0%{opacity:0;transform:scale(.6);}25%{opacity:.9;}100%{opacity:0;transform:scale(1.8);}}
+@media(min-width:901px) {
+  .wish-card:nth-child(2){transform:translateY(13px);}
+  .wish-card:nth-child(2):hover{transform:translateY(6px);}
+  .wish-grid {margin-bottom:13px;}
+}
+@media(max-width:900px) {
+  .hero-art::before {box-shadow:0 0 0 6px #fffcf42e,0 0 0 7px #cda88b29;}
+  .hero::after {width:380px;height:380px;top:-200px;right:-200px;}
+  .viet-figure::before{width:min(80%,330px);}
+}
+@media(max-width:600px) {
+  .entry-inner{min-height:min(760px,calc(100svh - 56px));}
+  .entry::before{box-shadow:inset 0 0 0 4px #fffaf766,inset 0 0 0 5px #dfc3b74d;}
+  .entry-cta{letter-spacing:.07em;}
+  .entry-cta span{width:34px;height:34px;}
+  .env-seal::before{inset:6px;}
+  .env-message{letter-spacing:.045em;}
+  .hero::before{box-shadow:inset 0 0 0 4px #fffdf54d,inset 0 0 0 5px #d7b8a02e;}
+  .hero-arch {box-shadow:inset 0 0 0 6px #fffaf58c,inset 0 0 0 7px #cba48147,0 18px 35px #a7678510;}
+  .letter-wrap::before{inset:9px -5px -9px 5px;}
+  .letter-paper{border-radius:5px;}
+  .letter-paper::before{inset:8px;}
+  .letter-content{line-height:2.05;}
+  .wish-grid{gap:16px;}
+  .wish-card{padding-top:35px;padding-bottom:29px;border-radius:6px;}
+  .wish-card::after{border-radius:2px;}
+  .final-btn{font-size:11px;padding:0 22px;max-width:100%;min-height:52px;}
+}
+@media(max-height:1000px) and (min-width:601px) {
+  .entry{padding-top:20px;padding-bottom:25px;}
+  .entry-inner{min-height:calc(100svh - 56px);padding:5px 0;}
+  .entry-spray{width:170px;height:70px;}
+  .entry-preamble{font-size:9px;margin:2px 0 9px;}
+  .entry h1{font-size:clamp(37px,4.1vw,47px);line-height:1.27;}
+  .entry-desc{font-size:12px;line-height:1.65;margin:9px auto 22px;}
+  .envelope-scene{width:min(42svh,360px);}
+  .entry-cta{margin-top:20px;min-height:36px;}
+  .entry-cta span{width:32px;height:32px;}
+  .entry-foot{font-size:11px;margin-top:3px;}
+  .creator-entry{margin-top:8px;gap:1px;}
+  .creator-entry::before{margin-bottom:4px;}
+  .creator-entry-name{font-size:18px;}
+}
+@media(min-height:821px) and (max-height:1000px) and (min-width:601px) {
+  .entry-spray{width:190px;height:85px;}
+  .entry h1{font-size:clamp(40px,4.6vw,54px);}
+  .envelope-scene{width:min(45svh,410px);}
+}
+@media(max-height:640px) and (min-width:601px) {
+  .entry-spray{width:140px;height:45px;}
+  .entry h1{font-size:36px;line-height:1.2;}
+  .entry-desc{font-size:11px;line-height:1.6;margin:8px auto 18px;}
+  .envelope-scene{width:min(38svh,310px);}
+  .entry-cta{margin-top:14px;}
+  .creator-entry-name{font-size:16px;}
+}
+@media(max-width:360px) {
+  .entry-cta{letter-spacing:.035em;}
+  .final-btn{font-size:10px;padding:0 17px;}
+}
+@media(max-height:620px) and (max-width:600px) {
+  .entry-inner{padding-bottom:14px;}
+  .entry-desc{margin-bottom:11px;}
+  .entry-cta{min-height:36px;margin-top:12px;}
+  .creator-entry{margin-top:6px;}
+}
+@media(prefers-reduced-motion:reduce) {
+}
+
+</style>
+<style id="refinementV15">
+/* Chỉ giữ hoa hồng có chiều sâu của bản gốc làm điểm trang trí chính. */
+.hero::after,.final-section::after,.env-flap::after{content:none;display:none;}
+.entry::after{content:none;display:none;}
+.entry::before{border-color:#c4a58b80;box-shadow:inset 0 0 0 5px #fffaf766,inset 0 0 0 6px #dfc3b733;}
+.entry-spray{opacity:1;filter:drop-shadow(0 6px 9px #9e60751a);}
+.env-front::after{opacity:.55;}
+.env-corner{display:none;}
+.env-foil{display:none;}
+.wish-card::after{border-color:#d3b8a777;}
+.final-section::before{border-color:#ead0b27d;box-shadow:inset 0 0 0 5px #ffefd308,inset 0 0 0 6px #e0bd9626;}
+@media(max-width:600px){
+ .entry::before{box-shadow:inset 0 0 0 4px #fffaf766,inset 0 0 0 5px #dfc3b733;}
+}
+</style>
 </head>
-<body class="guest-card" data-card-mode="guest">
+<body data-design-version="15" class="guest-card" data-card-mode="guest">
 <!-- MỘT FILE HTML GỐC: hoa, chữ và nhạc mặc định hoạt động offline. Có thể chọn nhạc riêng và xuất file HTML kèm nhạc. -->
 <div class="entry" id="entry" role="region" aria-label="Màn hình mở thiệp">
+ 
+
  <div class="entry-inner">
   <div class="entry-spray"></div>
   <p class="entry-preamble">NGÀY PHỤ NỮ VIỆT NAM</p>
   <h1>Một chút <em>dịu dàng</em><br>gửi đến bạn<span class="title-spark" aria-hidden="true">✦</span></h1>
   <p class="entry-desc">Có một tấm thiệp nhỏ, chứa đựng thật nhiều yêu thương.<br>Hãy mở ra và đón nhận điều bất ngờ nhé!</p>
   <div class="envelope-scene">
+   <div class="v14-open-aura" aria-hidden="true"></div>
    <div class="env-back"></div>
    <div class="env-letter"><span class="eyebrow">Happy women's day</span><strong>20 · 10</strong><small>With love, for you</small></div>
    <div class="env-left"></div><div class="env-right"></div><div class="env-front"></div><div class="env-flap"></div>
    <div class="env-corner a">✧</div><div class="env-corner b">✧</div>
    <div class="env-foil env-foil-left" aria-hidden="true">❧</div><div class="env-foil env-foil-right" aria-hidden="true">❧</div>
    <div class="env-message" aria-hidden="true">gửi đến bạn ♡</div>
+   
    <div class="env-seal"><strong>20/10</strong><small>LOVE</small></div>
    <button class="open-hit" id="openCard" type="button" aria-label="Mở thiệp 20 tháng 10"></button>
   </div>
@@ -882,6 +1161,7 @@ html.autoread-active { scroll-behavior:auto !important; }
  <main>
   <section class="hero" aria-label="Chúc mừng Ngày Phụ nữ Việt Nam">
    <div class="hero-corner hero-corner-left" aria-hidden="true">✤ <span>✦</span></div><div class="hero-corner hero-corner-right" aria-hidden="true">✤ <span>✦</span></div>
+   
    <div class="hero-grid">
     <div class="hero-copy">
      <div class="hero-kicker"><span class="kicker-diamond">✧</span> A LITTLE LOVE, JUST FOR YOU <span class="kicker-diamond">✧</span></div>
@@ -1001,6 +1281,7 @@ html.autoread-active { scroll-behavior:auto !important; }
    <div class="quote-floral" aria-hidden="true">❀</div>
    <p class="reveal">Mong bạn luôn là phiên bản rạng rỡ nhất của chính mình, được yêu thương, được trân trọng và thật nhiều hạnh phúc.</p>
    <span>VỚI TẤT CẢ SỰ TRÂN QUÝ</span>
+  
   </aside>
 
   <section class="section letter-section" id="loichuc">
@@ -1008,7 +1289,7 @@ html.autoread-active { scroll-behavior:auto !important; }
    <h2 class="section-heading reveal type-ready"><span class="word-rise" style="--word-delay: 0ms;">Gửi</span> <span class="word-rise" style="--word-delay: 90ms;">người</span> <em><span class="word-rise" style="--word-delay: 180ms;">thương</span> <span class="word-rise" style="--word-delay: 270ms;">quý</span></em></h2>
    <p class="section-sub reveal">Có những điều tốt đẹp chẳng cần nói thành lời, nhưng hôm nay nhất định phải gửi tới bạn.</p>
    <div class="letter-wrap reveal">
-    <article class="letter-paper" aria-label="Lời chúc 20 tháng 10">
+    <article class="letter-paper letter-show" aria-label="Lời chúc 20 tháng 10">
      <div class="paper-floral paper-floral-tl" aria-hidden="true"></div>
      <div class="paper-floral paper-floral-br" aria-hidden="true"></div>
      <div class="paper-corner tl"></div><div class="paper-corner br"></div>
@@ -1062,6 +1343,7 @@ html.autoread-active { scroll-behavior:auto !important; }
   </section>
 
   <section class="final-section">
+ 
    <span class="final-ribbon" aria-hidden="true">✧ &nbsp; A LITTLE MAGIC &nbsp; ✧</span>
    <span class="final-ornament reveal">❀</span>
    <span class="eyebrow reveal">20 OCTOBER · JUST FOR YOU</span>
