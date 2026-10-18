@@ -98,7 +98,6 @@ button:disabled { opacity:.6;cursor:not-allowed; }
 .hero-description {font-size:15px;line-height:1.95;color:#88777a;max-width:370px;margin:23px 0 0;}
 .pill-link {border:0;background:var(--wine);color:#fffaf3;display:inline-flex;align-items:center;gap:15px;text-decoration:none;border-radius:30px;padding:16px 24px;font-size:12px;font-weight:700;letter-spacing:.07em;margin-top:29px;box-shadow:0 11px 24px #71395226;transition:transform .2s,box-shadow .2s;}
 .pill-link:hover {transform:translateY(-3px);box-shadow:0 16px 27px #71395236;}
-.pill-link span {font-size:17px;font-weight:normal;}
 .hero-art {position:relative;display:grid;place-items:center;min-height:580px;isolation:isolate;}
 .hero-art::before {content:"";position:absolute;width:min(520px,95%);aspect-ratio:1;border:1px solid #d7b37b;border-radius:50%;opacity:.35;top:10%;left:2%;transform:rotate(15deg) scaleX(.94);}
 .hero-art::after {content:"";position:absolute;width:68%;height:14px;background:#80656c25;filter:blur(19px);border-radius:50%;bottom:6%;left:20%;}
@@ -157,8 +156,6 @@ button:disabled { opacity:.6;cursor:not-allowed; }
 .float-layer {position:fixed;inset:0;z-index:26;pointer-events:none;overflow:hidden;}
 .petal {position:absolute;top:-35px;width:12px;height:20px;border-radius:2px 90% 6px 90%;background:radial-gradient(circle at 30% 25%,#ffebec,#e6a6b7 72%,#c77d95);box-shadow:0 1px 2px #ba899233;opacity:.69;animation:fall linear forwards;will-change:transform;}
 @keyframes fall {0%{transform:translate3d(0,-40px,0) rotate(0deg);opacity:0;}10%{opacity:.62;}89%{opacity:.58;}100%{transform:translate3d(var(--sway),110vh,0) rotate(var(--spin));opacity:0;}}
-.burst {position:fixed;z-index:120;left:var(--x);top:var(--y);pointer-events:none;color:var(--col,#e7b68e);font-size:var(--size,17px);opacity:0;animation:burst 1.6s var(--ease) forwards;}
-@keyframes burst {0%{transform:translate(0,0) scale(.2) rotate(0);opacity:1;}65%{opacity:1;}100%{transform:translate(var(--tx),var(--ty)) scale(.7) rotate(var(--spin));opacity:0;}}
 .js .reveal {opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
 .js .reveal.visible {opacity:1;transform:none;}
 /* form */
@@ -501,7 +498,6 @@ body{background:#fff5f8;color:var(--ink);}
 .hero-date .date-label{color:#bd8c88;font-size:9px;letter-spacing:.2em;}
 .hero-description{font-size:14px;line-height:1.9;color:#8c6a7d;max-width:365px;margin-top:18px;}
 .pill-link{background:linear-gradient(120deg,#965773,#794057);box-shadow:0 10px 24px #92516b2a,inset 0 1px #ffffff3d;border:1px solid #975d76;padding:14px 22px;margin-top:23px;letter-spacing:.13em;font-size:11px;}
-.pill-link span{display:grid;place-items:center;width:24px;height:24px;border:1px solid #ffffff55;border-radius:50%;}
 .hero-art{overflow:visible;min-height:530px;isolation:isolate;}
 .hero-arch{position:absolute;top:10%;left:10%;width:84%;aspect-ratio:.95;border-radius:50% 50% 47% 47% / 44% 44% 56% 56%;background:radial-gradient(circle at 50% 43%,#fffaf3bf 0%,#fff4f0ba 47%,#f4d4e153 78%,transparent 82%);border:1px solid #e3c2ba99;box-shadow:inset 0 0 0 10px #fff8f7a6,inset 0 0 0 11px #d9b9ad55,0 15px 45px #b7789912;z-index:-1;}
 .hero-art::before{width:92%;height:auto;aspect-ratio:1;border:1px dashed #c6a07d80;top:6%;left:3%;opacity:.73;border-radius:50%;transform:none;}
@@ -887,7 +883,7 @@ body.guest-card .site-nav #musicBtn { width:54px; height:54px; }
      <div class="hero-script-accent" aria-hidden="true"><span>❀</span><i></i><span>❀</span></div>
      <div class="hero-date"><span class="line"></span><span class="date-num">20·10</span><span class="date-label">THÁNG MƯỜI<br>RỰC RỠ</span></div>
      <p class="hero-description">Một ngày dành riêng để tôn vinh những người phụ nữ tuyệt vời — những bông hoa đẹp nhất của cuộc đời.</p>
-     <button class="pill-link" id="readWish" type="button">ĐỌC LỜI CHÚC <span>↘</span></button>
+     <button class="pill-link" id="readWish" type="button">ĐỌC LỜI CHÚC</button>
     </div>
     <div class="hero-art">
       <div class="hero-arch" aria-hidden="true"></div>
@@ -1320,7 +1316,7 @@ $('exportCard').addEventListener('click',async()=>{
   const openBtn=clone.querySelector('#openCard');if(openBtn)openBtn.disabled=false;
   const toast=clone.querySelector('#toast');if(toast){toast.classList.remove('show');toast.textContent='';}
   const float=clone.querySelector('#floatLayer');if(float)float.replaceChildren();
-  clone.querySelectorAll('.burst,.heart-fall,.petal').forEach(e=>e.remove());
+  clone.querySelectorAll('.heart-fall,.petal').forEach(e=>e.remove());
   const site=clone.querySelector('#site');if(site)site.classList.remove('visible');
   clone.querySelectorAll('.reveal').forEach(e=>e.classList.remove('visible'));
   clone.querySelectorAll('.type-ready').forEach(e=>e.classList.remove('letters-on'));
@@ -1344,7 +1340,6 @@ function finishOpening(){
  window.scrollTo(0,0);
  setTimeout(()=>{$('entry').hidden=true;$('entry').style.display='none';},1050);
  initPetals();
- setTimeout(()=>burst(window.innerWidth/2,Math.min(window.innerHeight*.48,430),32),reduced?0:380);
 }
 function startOpening(){
  if(opened)return;opened=true;
@@ -1355,18 +1350,7 @@ function startOpening(){
 }
 $('openCard').addEventListener('click',startOpening);
 $('readWish').addEventListener('click',()=>$('loichuc').scrollIntoView({behavior:reduced?'auto':'smooth'}));
-function burst(x,y,n=40){
- if(reduced)return;
- const glyphs=['✿','✧','♡','❀','✦'];
- for(let i=0;i<n;i++){
-  const e=document.createElement('span');e.className='burst';e.textContent=glyphs[Math.floor(Math.random()*glyphs.length)];
-  const a=Math.random()*Math.PI*2, dist=65+Math.random()*Math.min(260,innerWidth*.4);
-  e.style.setProperty('--x',x+'px');e.style.setProperty('--y',y+'px');e.style.setProperty('--tx',Math.cos(a)*dist+'px');e.style.setProperty('--ty',Math.sin(a)*dist+'px');
-  e.style.setProperty('--spin',(Math.random()*660-330)+'deg');e.style.setProperty('--size',(12+Math.random()*22)+'px');e.style.setProperty('--col',['#e8b4c0','#edcca0','#f0dfbd','#e7a3af','#d3ad78'][i%5]);
-  document.body.appendChild(e);setTimeout(()=>e.remove(),1800);
- }
-}
-$('receiveFlowers').addEventListener('click',(e)=>{const r=e.currentTarget.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,65);notify('Gửi bạn một bó hoa và ngàn lời yêu thương! ♥');});
+$('receiveFlowers').addEventListener('click',()=>{notify('Gửi bạn một bó hoa và ngàn lời yêu thương! ♥');});
 let petalTimer=null;
 function makePetal(){
  if(document.hidden || !document.body.classList.contains('opened') || reduced)return;
