@@ -733,6 +733,73 @@ body{background:#fff5f8;color:var(--ink);}
 @media(max-width:360px){.creator-entry{margin-top:6px;}.creator-entry-name{font-size:17px;}.creator-letter{margin-top:26px;}}
 @media(prefers-reduced-motion:reduce){.creator-entry{animation:none}}
 
+
+/* Các công cụ nổi nằm ngoài lớp thiệp để cố định đúng vào viewport
+   cả trong lúc animation mở thiệp còn đang chạy. */
+.site-nav { opacity:0; visibility:hidden; pointer-events:none; transition:opacity .5s ease,visibility .5s ease; }
+.opened .site-nav { opacity:1; visibility:visible; pointer-events:auto; }
+/* V6 – Bỏ thanh ngang phía trên. Chỉ để công cụ chỉnh sửa nổi,
+   còn sóng nhạc luôn ở góc phải phía dưới của thiệp. */
+.site-nav {
+ position:static; inset:auto; width:0; height:0; min-height:0;
+ padding:0; margin:0; border:0; border-radius:0;
+ background:none; box-shadow:none; backdrop-filter:none;
+ -webkit-backdrop-filter:none; z-index:auto; overflow:visible;
+}
+.site-nav .nav-actions { display:block; padding:0; margin:0; }
+.site-nav #musicBtn {
+ position:fixed; z-index:55;
+ right:calc(16px + env(safe-area-inset-right, 0px));
+ bottom:calc(18px + env(safe-area-inset-bottom, 0px));
+ width:54px; height:54px; border-radius:50%;
+ background:rgba(255,248,252,.96); color:#995477;
+ border:1px solid rgba(210,145,174,.85);
+ box-shadow:0 8px 28px rgba(128,61,96,.20),inset 0 1px 0 #fff;
+ backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.site-nav #musicBtn .music-bars { width:25px; height:22px; gap:3px; }
+.site-nav #musicBtn .music-bars b { width:3px; }
+.site-nav #musicBtn.playing {
+ color:#a05278; background:rgba(255,222,238,.96); border-color:#d6a6be;
+}
+.site-nav #chooseMusicBtn,
+.site-nav #editBtn {
+ position:fixed; z-index:55;
+ top:calc(14px + env(safe-area-inset-top, 0px));
+ height:42px; border-radius:24px;
+ box-shadow:0 6px 20px #84496324;
+ background:rgba(255,250,252,.94);
+ backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.site-nav #chooseMusicBtn { right:calc(14px + env(safe-area-inset-right, 0px)); width:42px; }
+.site-nav #editBtn { right:calc(65px + env(safe-area-inset-right, 0px)); padding:0 14px; font-size:12px; }
+/* Trong bản gửi khách, không hiện các nút chỉnh sửa hay chọn nhạc. */
+body.guest-card .site-nav #chooseMusicBtn,
+body.guest-card .site-nav #editBtn { display:none !important; }
+body.guest-card .site-nav #musicBtn { width:54px; height:54px; }
+/* Bỏ dấu ngoặc kép trang trí ở phần lời nhắn. */
+.quote-strip .quote-mark { display:none !important; }
+.quote-strip p { margin-top:17px; }
+/* Không trừ chiều cao của thanh trên đã bỏ. */
+.hero { min-height:max(700px,100svh); }
+.hero-grid { min-height:max(700px,100svh); }
+@media(max-width:900px) {
+ .hero-grid { min-height:0; }
+}
+@media(max-width:600px) {
+ .site-nav { height:0; padding:0; }
+ .site-nav #musicBtn,
+ body.guest-card .site-nav #musicBtn {
+  right:calc(12px + env(safe-area-inset-right, 0px));
+  bottom:calc(14px + env(safe-area-inset-bottom, 0px));
+  width:50px; height:50px;
+ }
+ .site-nav #editBtn { right:calc(62px + env(safe-area-inset-right, 0px)); font-size:11px; }
+ .site-nav #chooseMusicBtn { right:calc(12px + env(safe-area-inset-right, 0px)); }
+ .hero {min-height:0;}
+ .hero-grid {min-height:0;}
+ .toast{bottom:calc(76px + env(safe-area-inset-bottom,0px));}
+}
 </style>
 </head>
 <body class="guest-card" data-card-mode="guest">
@@ -763,9 +830,7 @@ body{background:#fff5f8;color:var(--ink);}
 </div>
 
 <div class="float-layer" id="floatLayer" aria-hidden="true"></div>
-<div class="site" id="site">
- <nav class="site-nav" aria-label="Thanh công cụ thiệp">
-  <div class="brand">20 <i>/</i> 10 <span class="brand-label">a little letter of love</span></div>
+<nav class="site-nav" aria-label="Thanh công cụ thiệp">
   <div class="nav-actions">
    <button class="icon-button playing" id="musicBtn" type="button" aria-label="Tắt nhạc" aria-pressed="true" title="Tắt nhạc">
     <span class="music-bars"><b></b><b></b><b></b><b></b></span>
@@ -774,6 +839,7 @@ body{background:#fff5f8;color:var(--ink);}
    <button class="nav-button" id="editBtn" type="button" hidden="" aria-hidden="true" tabindex="-1">✎ &nbsp;Cá nhân hóa</button>
   </div>
  </nav>
+<div class="site" id="site">
  <main>
   <section class="hero" aria-label="Chúc mừng Ngày Phụ nữ Việt Nam">
    <div class="hero-corner hero-corner-left" aria-hidden="true">✤ <span>✦</span></div><div class="hero-corner hero-corner-right" aria-hidden="true">✤ <span>✦</span></div>
@@ -894,7 +960,6 @@ body{background:#fff5f8;color:var(--ink);}
 
   <aside class="quote-strip" aria-label="Lời nhắn yêu thương">
    <div class="quote-floral" aria-hidden="true">❀</div>
-   <div class="quote-mark">“</div>
    <p class="reveal">Mong bạn luôn là phiên bản rạng rỡ nhất của chính mình, được yêu thương, được trân trọng và thật nhiều hạnh phúc.</p>
    <span>VỚI TẤT CẢ SỰ TRÂN QUÝ</span>
   </aside>
