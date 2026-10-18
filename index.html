@@ -835,6 +835,11 @@ body.guest-card .site-nav #musicBtn { width:54px; height:54px; }
 @media(max-width:420px){.viet-section{padding:64px 13px 77px;}.viet-title{font-size:clamp(37px,10.2vw,46px);line-height:1.32;}.viet-eyebrow{font-size:9px;gap:8px;letter-spacing:.21em;}.viet-intro-text{font-size:13.5px;line-height:1.85;padding:0 6px;}.viet-art-frame{width:min(100%,300px);}.viet-layout{gap:3px;}.viet-figure figcaption{font-size:8px;letter-spacing:.16em;}.viet-figure figcaption span{padding:0 3px;}.viet-story{padding:25px 13px 0;}.viet-story h3{font-size:30px;line-height:1.38;}.viet-story p{font-size:14px;line-height:1.95;margin-bottom:16px;}.viet-story blockquote{font-size:20px;line-height:1.74;margin:22px 0;}.viet-chapter{font-size:9px;}}
 @media(prefers-reduced-motion:reduce){.viet-portrait,.viet-motif{animation:none!important;}}
 </style>
+<style id="autoscrollStyle">
+/* V13: Ngắt cuộn mượt CSS chỉ trong lúc thiệp tự trôi để bảo đảm
+   tốc độ êm trên iPhone; thao tác cuộn thủ công vẫn bình thường. */
+html.autoread-active { scroll-behavior:auto !important; }
+</style>
 </head>
 <body class="guest-card" data-card-mode="guest">
 <!-- MỘT FILE HTML GỐC: hoa, chữ và nhạc mặc định hoạt động offline. Có thể chọn nhạc riêng và xuất file HTML kèm nhạc. -->
@@ -1003,7 +1008,7 @@ body.guest-card .site-nav #musicBtn { width:54px; height:54px; }
    <h2 class="section-heading reveal type-ready"><span class="word-rise" style="--word-delay: 0ms;">Gửi</span> <span class="word-rise" style="--word-delay: 90ms;">người</span> <em><span class="word-rise" style="--word-delay: 180ms;">thương</span> <span class="word-rise" style="--word-delay: 270ms;">quý</span></em></h2>
    <p class="section-sub reveal">Có những điều tốt đẹp chẳng cần nói thành lời, nhưng hôm nay nhất định phải gửi tới bạn.</p>
    <div class="letter-wrap reveal">
-    <article class="letter-paper letter-show" aria-label="Lời chúc 20 tháng 10">
+    <article class="letter-paper" aria-label="Lời chúc 20 tháng 10">
      <div class="paper-floral paper-floral-tl" aria-hidden="true"></div>
      <div class="paper-floral paper-floral-br" aria-hidden="true"></div>
      <div class="paper-corner tl"></div><div class="paper-corner br"></div>
@@ -1333,6 +1338,67 @@ $('exportCard').addEventListener('click',async()=>{
  finally{button.disabled=false;button.textContent='↓ Xuất thiệp kèm nhạc';}
 });
 updateMusicNow();
+// V13 · ĐỌC THIỆP TỰ ĐỘNG: cuộn nhẹ sau khi mở phong bì.
+// Khi khách chạm / vuốt / cuộn tay, tạm dừng 9 giây để đọc rồi tiếp tục.
+// Không thêm nút hay biểu tượng nào lên thiệp; chạy cả trên bản gửi khách.
+const AUTO_SCROLL_PX_PER_SECOND = 31;
+const AUTO_SCROLL_INITIAL_WAIT_MS = 3200;
+const AUTO_SCROLL_USER_WAIT_MS = 9000;
+let autoReading = false;
+let autoReadResumeAt = 0;
+let autoReadPrevFrame = 0;
+let autoReadPosition = 0;
+let autoReadFrameId = 0;
+function pauseAutoReading(delay = AUTO_SCROLL_USER_WAIT_MS) {
+ if (!autoReading) return;
+ autoReadResumeAt = performance.now() + delay;
+ autoReadPrevFrame = 0;
+ document.documentElement.classList.remove('autoread-active');
+}
+function autoReadStep(time) {
+ if (!autoReading) return;
+ const scroller = document.scrollingElement || document.documentElement;
+ const aDialogIsOpen = !!document.querySelector('dialog[open]');
+ if (document.hidden || aDialogIsOpen || time < autoReadResumeAt) {
+  document.documentElement.classList.remove('autoread-active');
+  autoReadPrevFrame = 0;
+  autoReadFrameId = requestAnimationFrame(autoReadStep);
+  return;
+ }
+ const bottom = Math.max(0, scroller.scrollHeight - scroller.clientHeight);
+ if (bottom <= 0 || scroller.scrollTop >= bottom - 2) {
+  autoReading = false;
+  document.documentElement.classList.remove('autoread-active');
+  return;
+ }
+ document.documentElement.classList.add('autoread-active');
+ if (!autoReadPrevFrame) {
+  autoReadPrevFrame = time;
+  autoReadPosition = scroller.scrollTop;
+ }
+ const elapsed = Math.max(0, Math.min(75, time - autoReadPrevFrame));
+ autoReadPrevFrame = time;
+ autoReadPosition = Math.min(bottom, autoReadPosition + elapsed * AUTO_SCROLL_PX_PER_SECOND / 1000);
+ scroller.scrollTop = autoReadPosition;
+ autoReadFrameId = requestAnimationFrame(autoReadStep);
+}
+function startAutoReading() {
+ if (reduced || autoReading) return;
+ autoReading = true;
+ autoReadResumeAt = performance.now() + AUTO_SCROLL_INITIAL_WAIT_MS;
+ autoReadPrevFrame = 0;
+ autoReadFrameId = requestAnimationFrame(autoReadStep);
+}
+// Chỉ tạm ngừng, không chặn hành vi chạm/scroll của trình duyệt.
+for (const ev of ['touchstart','touchmove','touchend','wheel','pointerdown']) {
+ window.addEventListener(ev, () => pauseAutoReading(), {passive:true});
+}
+window.addEventListener('keydown', (ev) => {
+ if (['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].includes(ev.key)) pauseAutoReading();
+});
+document.addEventListener('visibilitychange', () => {
+ if (!document.hidden && autoReading) pauseAutoReading(2200);
+});
 // CHUYỂN CẢNH MỞ PHONG BÌ.
 let opened=false;
 function finishOpening(){
@@ -1341,6 +1407,7 @@ function finishOpening(){
  window.scrollTo(0,0);
  setTimeout(()=>{$('entry').hidden=true;$('entry').style.display='none';},1050);
  initPetals();
+ startAutoReading();
 }
 function startOpening(){
  if(opened)return;opened=true;
@@ -1428,7 +1495,7 @@ function initLetterFlow(){
 }
 initLetterFlow();
 // Cho phép mở ngay trong chế độ xem trước ?preview=1 (không xuất hiện với khách bình thường).
-if(new URLSearchParams(location.search).get('preview')==='1') {opened=true;document.body.classList.add('opened');$('entry').style.display='none';initPetals();}
+if(new URLSearchParams(location.search).get('preview')==='1') {opened=true;document.body.classList.add('opened');$('entry').style.display='none';initPetals();startAutoReading();}
 </script>
 
 
