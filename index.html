@@ -1222,8 +1222,25 @@ button {transition:transform .28s var(--ease),box-shadow .28s ease,background .2
  .creator-avatar{width:36px;height:36px;border-radius:5px;}
 }
 </style>
+<style id="compactSignatureV21">
+/* V21 · Chữ ký cuối thiệp gọn, giữ ảnh đủ hình và thao tác xem ảnh lớn. */
+.creator-signature{
+ padding:4px 9px 4px 5px;gap:7px;border-radius:10px;
+ margin-top:12px;box-shadow:0 4px 12px #42213912,inset 0 1px #ffefd810;
+}
+.creator-avatar{border-radius:5px;}
+.creator-signature-type{gap:1px;}
+.creator-signature-label{font-size:6px;letter-spacing:.12em;line-height:1.4;}
+.creator-signature strong{font-size:18px;line-height:1.2;}
+@media(max-width:360px){
+ .creator-signature{padding:4px 8px 4px 5px;gap:6px;border-radius:9px;}
+ .creator-avatar{border-radius:4px;}
+ .creator-signature-label{font-size:5.5px;}
+ .creator-signature strong{font-size:16px;}
+}
+</style>
 </head>
-<body data-design-version="19" class="guest-card" data-card-mode="guest">
+<body data-design-version="21" class="guest-card" data-card-mode="guest">
 <!-- MỘT FILE HTML GỐC: hoa, chữ và nhạc mặc định hoạt động offline. Có thể chọn nhạc riêng và xuất file HTML kèm nhạc. -->
 <div class="entry" id="entry" role="region" aria-label="Màn hình mở thiệp">
  
@@ -1396,7 +1413,7 @@ button {transition:transform .28s var(--ease),box-shadow .28s ease,background .2
    <h2 class="section-heading reveal type-ready"><span class="word-rise" style="--word-delay: 0ms;">Gửi</span> <span class="word-rise" style="--word-delay: 90ms;">người</span> <em><span class="word-rise" style="--word-delay: 180ms;">thương</span> <span class="word-rise" style="--word-delay: 270ms;">quý</span></em></h2>
    <p class="section-sub reveal">Có những điều tốt đẹp chẳng cần nói thành lời, nhưng hôm nay nhất định phải gửi tới bạn.</p>
    <div class="letter-wrap reveal">
-    <article class="letter-paper" aria-label="Lời chúc 20 tháng 10">
+    <article class="letter-paper letter-show" aria-label="Lời chúc 20 tháng 10">
      <div class="letter-bouquet" aria-hidden="true"></div>
      
      <div class="paper-corner tl"></div><div class="paper-corner br"></div>
@@ -1461,7 +1478,6 @@ button {transition:transform .28s var(--ease),box-shadow .28s ease,background .2
    <div class="footer-note">MADE WITH LOVE · HAPPY WOMEN'S DAY 20/10<br><button class="creator-footer creator-signature" id="creatorSignature" type="button" aria-haspopup="dialog" aria-controls="creatorDialog" aria-label="Xem ảnh người thiết kế Thành Chung" title="Thành Chung · Người thiết kế">
  <span class="creator-avatar" aria-hidden="true"></span>
  <span class="creator-signature-type"><span class="creator-signature-label">THIẾT KẾ BỞI</span><strong>Thành Chung</strong></span>
- <span class="creator-signature-arrow" aria-hidden="true">↗</span>
 </button></div>
   </section>
  </main>
